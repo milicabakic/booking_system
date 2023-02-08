@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet  author="mbakic"  id="insetAdmin">
+        <insert tableName="booking_admin">
+            <column  name="first_name"  value="Igor"/>
+            <column  name="last_name"  value="Atlic"/>
+            <column  name="jmbg"  value="1231231231234"/>
+            <column  name="email"  value="admin@gmail.com"/>
+            <column  name="phone_number"  value="+381 63 000 0000"/>
+            <column  name="username" value="admin"/>
+            <column  name="password" value="$2a$04$AqKphx4LE94zSxijnNfuY.KbMBz4MC9camb74tqrC9wcb5ZM36NPi"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

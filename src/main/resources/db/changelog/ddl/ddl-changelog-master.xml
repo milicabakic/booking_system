@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <include file="db/changelog/ddl/create/permission-table.xml"/>
+    <include  file="db/changelog/ddl/create/booking-provider-table.xml"/>
+    <include  file="db/changelog/ddl/create/booking-user-table.xml"/>
+    <include  file="db/changelog/ddl/create/booking-admin-table.xml"/>
+    <include  file="db/changelog/ddl/create/country-table.xml"/>
+    <include  file="db/changelog/ddl/create/city.xml"/>
+    <include  file="db/changelog/ddl/create/amenities-table.xml"/>
+    <include  file="db/changelog/ddl/create/service-facility-table.xml"/>
+    <include  file="db/changelog/ddl/create/studio-table.xml"/>
+    <include  file="db/changelog/ddl/create/amenities-studio-table.xml"/>
+    <include file="db/changelog/ddl/create/studio-pictures-table.xml"/>
+    <include file="db/changelog/ddl/create/facility-pictures-table.xml"/>
+    <include file="db/changelog/ddl/create/season-table.xml"/>
+    <include file="db/changelog/ddl/create/booking-table.xml"/>
+
+</databaseChangeLog>

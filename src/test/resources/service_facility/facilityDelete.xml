@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <booking_provider id="1" first_name="Petar" last_name="Petrovic" jmbg="1234567890123" email="ivan@gmail.com"
+                      phone_number="+381 64 999 9999" username="nikola"
+                      password="$2a$04$AqKphx4LE94zSxijnNfuY.KbMBz4MC9camb74tqrC9wcb5ZM36NPi"/>
+
+    <country iso3="SRB" name="Serbia" />
+    <country iso3="JPN" name="Japan" />
+
+    <city id="1" name="Belgrade" province="Belgrade" country_iso3="SRB"/>
+    <city id="2" name="Tokyo" province="Tokyo" country_iso3="JPN"/>
+
+
+    <service_facility id="1" address="address" postal_code="11000" number_of_floors="5" name="Hotel1"
+                      contact_phone="+381 64 999 9999" description="description" checkin_time="12:00:00"
+                      checkout_time="10:00:00" city_id="1" country_iso3="SRB" booking_provider_id="1"/>
+
+    <service_facility id="2" address="address2" postal_code="110002" number_of_floors="1" name="Hotel2"
+                      contact_phone="+381 64 222 2222" description="description2" checkin_time="12:00:00"
+                      checkout_time="10:00:00" city_id="1" country_iso3="SRB" booking_provider_id="1"/>
+</dataset>

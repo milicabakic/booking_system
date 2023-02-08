@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+      http://www.liquibase.org/xml/ns/pro
+      http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+
+    <changeSet  author="iatlic"  id="createServiceFacility">
+        <createTable tableName="service_facility">
+            <column  name="id"  type="integer">
+                <constraints  nullable="false"  primaryKey="true"  unique="true"/>
+            </column>
+            <column  name="address"  type="varchar(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="country_iso3"  type="varchar(5)">
+                <constraints nullable="false" foreignKeyName="fk_country" references="country(iso3)" deleteCascade="true"/>
+            </column>
+            <column  name="city_id"  type="int">
+                <constraints nullable="false" foreignKeyName="fk_city" references="city(id)" deleteCascade="true"/>
+            </column>
+            <column  name="postal_code"  type="varchar(10)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="number_of_floors" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="contact_phone" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="description" type="text">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="checkin_time"  type="time"/>
+            <column  name="checkout_time"  type="time"/>
+            <column  name="booking_provider_id"  type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement
+                columnDataType="int"
+                columnName="id"
+                incrementBy="1"
+                startWith="1"
+                tableName="service_facility"
+        />
+        <addForeignKeyConstraint
+                constraintName="fk_booking_provider"
+                baseTableName="service_facility" baseColumnNames="booking_provider_id"
+                referencedTableName="booking_provider" referencedColumnNames="id"
+                onDelete="CASCADE"
+        />
+    </changeSet>
+
+</databaseChangeLog>

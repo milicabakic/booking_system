@@ -1,0 +1,119 @@
+<configuration>
+    <springProperty name="log.format" source="log.format"/>
+    <springProperty name="log.location" source="log.location"/>
+    <springProperty name="log.level" source="log.level"/>
+
+    <if condition='property("log.location").equals("console")'>
+        <then>
+            <appender name="appender" class="ch.qos.logback.core.ConsoleAppender">
+                <if condition='property("log.format").equals("plaintext")'>
+                    <then>
+                        <encoder name="encoder-plaintext" class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+                            <layout name="plaintext" class="ch.qos.logback.classic.PatternLayout">
+                                <Pattern>
+                                    Time: %green(%d{HH:mm:ss.SSS}), Thread: %cyan(%thread),  Level: %highlight(%-5level), Class: %yellow(%logger{50}), Message: %msg%n
+                                </Pattern>
+                            </layout>
+                        </encoder>
+                    </then>
+                    <else>
+                        <if condition='property("log.format").equals("json")'>
+                            <then>
+                                <encoder name="encoder-json" class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+                                    <layout name="json" class="ch.qos.logback.contrib.json.classic.JsonLayout">
+                                        <jsonFormatter
+                                                class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+                                            <prettyPrint>true</prettyPrint>
+                                        </jsonFormatter>
+                                        <timestampFormat>yyyy-MM-dd' 'HH:mm:ss.SSS</timestampFormat>
+                                    </layout>
+                                </encoder>
+                            </then>
+                            <else>
+                                <then>
+                                    <layout name="plaintext" class="ch.qos.logback.classic.PatternLayout">
+                                        <Pattern>
+                                            Time: %green(%d{HH:mm:ss.SSS}), Thread: %cyan(%thread),  Level: %highlight(%-5level), Class: %yellow(%logger{50}), Message: %msg%n
+                                        </Pattern>
+                                    </layout>
+                                </then>
+                            </else>
+                        </if>
+                    </else>
+                </if>
+            </appender>
+        </then>
+        <else>
+            <if condition='property("log.location").equals("file")'>
+                <then>
+                    <appender name="appender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+                        <file>${LOG}//spring-boot-logger.log</file>
+                        <if condition='property("log.format").equals("plaintext")'>
+                            <then>
+                                <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+                                    <layout name="plaintext" class="ch.qos.logback.classic.PatternLayout">
+                                        <Pattern>
+                                            Time: %d{HH:mm:ss.SSS},Thread: [%thread], Level: %-5level, Class: %logger{35}, Message: %msg%n
+                                        </Pattern>
+                                    </layout>
+                                </encoder>
+                            </then>
+                            <else>
+                                <if condition='property("log.format").equals("json")'>
+                                    <then>
+                                        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+                                            <layout name="json" class="ch.qos.logback.contrib.json.classic.JsonLayout">
+                                                <jsonFormatter
+                                                        class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+                                                    <prettyPrint>true</prettyPrint>
+                                                </jsonFormatter>
+                                                <timestampFormat>yyyy-MM-dd' 'HH:mm:ss.SSS</timestampFormat>
+                                            </layout>
+                                        </encoder>
+
+                                    </then>
+                                    <else>
+                                        <then>
+                                            <layout name="plaintext" class="ch.qos.logback.classic.PatternLayout">
+                                                <Pattern>
+                                                    Time: %green(%d{HH:mm:ss.SSS}), Thread: %cyan(%thread),  Level: %highlight(%-5level), Class: %yellow(%logger{36}), Message: %msg%n
+                                                </Pattern>
+                                            </layout>
+                                        </then>
+                                    </else>
+                                </if>
+                            </else>
+                        </if>
+
+                        <rollingPolicy
+                                class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+                            <fileNamePattern>${LOGS}/archived/spring-boot-logger-%d{yyyy-MM-dd hh:mm}.%i.log
+                            </fileNamePattern>
+                            <timeBasedFileNamingAndTriggeringPolicy
+                                    class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                                <maxFileSize>5KB</maxFileSize>
+                            </timeBasedFileNamingAndTriggeringPolicy>
+                            <maxHistory>5</maxHistory>
+                        </rollingPolicy>
+                    </appender>
+                </then>
+                <else>
+                    <appender name="appender" class="ch.qos.logback.core.ConsoleAppender">
+                        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+                            <layout name="plaintext" class="ch.qos.logback.classic.PatternLayout">
+                                <Pattern>
+                                    Time: %green(%d{HH:mm:ss.SSS}), Thread: %cyan(%thread),  Level: %highlight(%-5level), Class: %yellow(%logger{36}), Message: %msg%n
+                                </Pattern>
+                            </layout>
+                        </encoder>
+                    </appender>
+                </else>
+            </if>
+        </else>
+    </if>
+
+
+    <root level="${log.level}">
+        <appender-ref ref="appender" />
+    </root>
+</configuration>

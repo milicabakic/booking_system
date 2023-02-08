@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+      http://www.liquibase.org/xml/ns/pro
+      http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+
+    <changeSet  author="iatlic"  id="insetAmenity1">
+        <insert tableName="amenities">
+            <column  name="name"  value="Kupatilo"/>
+        </insert>
+    </changeSet>
+
+    <changeSet  author="iatlic"  id="insetAmenity2">
+        <insert tableName="amenities">
+            <column  name="name"  value="Terasa"/>
+        </insert>
+    </changeSet>
+
+    <changeSet  author="iatlic"  id="insetAmenity3">
+        <insert tableName="amenities">
+            <column  name="name"  value="Sampon"/>
+            <column name="parent" value="1"/>
+        </insert>
+    </changeSet>
+
+    <changeSet  author="mbakic"  id="insetAmenity4">
+        <insert tableName="amenities">
+            <column  name="name"  value="Bathroom"/>
+        </insert>
+    </changeSet>
+
+    <changeSet  author="mbakic"  id="insetAmenity5">
+        <insert tableName="amenities">
+            <column  name="name"  value="Breakfast"/>
+        </insert>
+    </changeSet>
+
+    <changeSet  author="mbakic"  id="insetAmenity6">
+        <insert tableName="amenities">
+            <column  name="name"  value="Lunch"/>
+        </insert>
+    </changeSet>
+
+    <changeSet  author="mbakic"  id="insetAmenity7">
+        <insert tableName="amenities">
+            <column  name="name"  value="Dinner"/>
+        </insert>
+    </changeSet>
+
+    <changeSet  author="mbakic"  id="insetAmenity8">
+        <insert tableName="amenities">
+            <column  name="name"  value="Free WiFi"/>
+        </insert>
+    </changeSet>
+
+
+</databaseChangeLog>

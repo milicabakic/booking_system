@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet author="iatlic" id="creteBedTypeType">
+        <sql>CREATE TYPE bedType AS ENUM ('single','twin','twin_xl','full','full_xl',
+                                        'queen','olympic_queen','king','california_king')</sql>
+    </changeSet>
+
+    <changeSet  author="iatlic"  id="createStudio">
+        <createTable tableName="studio">
+            <column  name="id"  type="integer">
+                <constraints  nullable="false"  primaryKey="true"  unique="true"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="number_of_rooms" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column name="number_of_people" type="tinyint">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="service_facility_id"  type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="beds" type="bedType[]">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addAutoIncrement
+                columnDataType="int"
+                columnName="id"
+                incrementBy="1"
+                startWith="1"
+                tableName="studio"
+        />
+        <addForeignKeyConstraint
+                constraintName="fk_service_facility"
+                baseTableName="studio" baseColumnNames="service_facility_id"
+                referencedTableName="service_facility" referencedColumnNames="id"
+                onDelete="CASCADE"
+        />
+    </changeSet>
+
+    <changeSet id="studio-classification" author="mbakic">
+        <addColumn tableName="studio">
+            <column name="classification_type" type="VARCHAR(50)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="set_beds_to_nullable" author="iatlic">
+        <dropNotNullConstraint tableName="studio" columnName="beds"/>
+    </changeSet>
+
+
+    <changeSet id="matchStudioProvider" author="mbakic">
+        <addColumn tableName="studio">
+            <column name="booking_provider_id" type="INTEGER"/>
+        </addColumn>
+        <addForeignKeyConstraint
+                constraintName="fk_studio_booking_provider"
+                baseTableName="studio" baseColumnNames="booking_provider_id"
+                referencedTableName="booking_provider" referencedColumnNames="id"
+                onDelete="CASCADE"
+        />
+    </changeSet>
+
+</databaseChangeLog>

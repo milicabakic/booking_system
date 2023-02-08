@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet  id="insertPermission1" author="mbkic">
+        <insert tableName="permission">
+            <column  name="name"  value="read_user"/>
+        </insert>
+    </changeSet>
+
+    <changeSet  id="insertPermission2" author="mbkic">
+        <insert tableName="permission">
+            <column  name="name"  value="edit_user"/>
+        </insert>
+    </changeSet>
+
+    <changeSet  id="insertPermission3" author="mbkic">
+        <insert tableName="permission">
+            <column  name="name"  value="delete_user"/>
+        </insert>
+    </changeSet>
+
+    <changeSet  id="permission-users" author="mbkic">
+        <insert tableName="permission_bookingUser">
+            <column  name="permission_id"  value="2"/>
+            <column  name="booking_user_id"  value="1"/>
+        </insert>
+
+        <insert tableName="permission_bookingUser">
+            <column  name="permission_id"  value="2"/>
+            <column  name="booking_user_id"  value="2"/>
+        </insert>
+    </changeSet>
+
+    <changeSet  id="permission-providers" author="mbkic">
+        <insert tableName="permission_bookingProvider">
+            <column  name="permission_id"  value="2"/>
+            <column  name="booking_provider_id"  value="1"/>
+        </insert>
+
+        <insert tableName="permission_bookingProvider">
+            <column  name="permission_id"  value="2"/>
+            <column  name="booking_provider_id"  value="2"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

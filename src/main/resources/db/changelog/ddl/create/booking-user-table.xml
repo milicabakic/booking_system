@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd">
+
+    <changeSet  author="iatlic"  id="createUser">
+        <createTable tableName="booking_user">
+            <column  name="id"  type="INTEGER">
+                <constraints  nullable="false"  primaryKey="true"  unique="true"/>
+            </column>
+            <column  name="first_name"  type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="last_name"  type="VARCHAR(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column  name="jmbg"  type="VARCHAR(20)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column  name="email"  type="VARCHAR(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+            <column  name="phone_number"  type="VARCHAR(50)">
+                <constraints nullable="false" unique="true"/>
+            </column>
+        </createTable>
+        <addAutoIncrement
+                columnDataType="int"
+                columnName="id"
+                incrementBy="1"
+                startWith="1"
+                tableName="booking_user"
+        />
+    </changeSet>
+
+    <changeSet id="remove-columnJMBG" author="mbakic">
+        <dropColumn tableName="booking_user">
+            <column name="jmbg"/>
+        </dropColumn>
+    </changeSet>
+
+    <changeSet id="user-permission-relation" author="mbakic">
+        <createTable tableName="permission_bookingUser">
+            <column  name="permission_id"  type="INTEGER">
+                <constraints  nullable="false"/>
+            </column>
+            <column  name="booking_user_id"  type="INTEGER">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+        <addForeignKeyConstraint constraintName="fk_permission"
+                                 baseTableName="permission_bookingUser" baseColumnNames="permission_id"
+                                 referencedTableName="permission" referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+        <addForeignKeyConstraint constraintName="fk_bookingUser"
+                                 baseTableName="permission_bookingUser" baseColumnNames="booking_user_id"
+                                 referencedTableName="booking_user" referencedColumnNames="id"
+                                 onDelete="CASCADE"/>
+    </changeSet>
+    
+    <changeSet id="credentials-columns-user" author="mbakic">
+        <addColumn tableName="booking_user">
+            <column name="username" type="VARCHAR(50)"/>
+            <column name="password" type="VARCHAR(100)"/>
+        </addColumn>
+    </changeSet>
+
+    <changeSet id="username-constraint" author="mbakic">
+        <addUniqueConstraint constraintName="unique_username"
+                tableName="booking_user"
+                columnNames="username"/>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:pro="http://www.liquibase.org/xml/ns/pro"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.1.xsd
+      http://www.liquibase.org/xml/ns/pro
+      http://www.liquibase.org/xml/ns/pro/liquibase-pro-4.1.xsd">
+
+    <changeSet  author="iatlic"  id="insertUser1">
+        <insert tableName="booking_user">
+            <column  name="first_name"  value="Ivan"/>
+            <column  name="last_name"  value="Ivanovic"/>
+            <column  name="email"  value="ivan@gmail.com"/>
+            <column  name="phone_number"  value="+381 63 333 3333"/>
+            <column  name="username" value="iivanovic"/>
+            <column  name="password" value="$2a$04$AqKphx4LE94zSxijnNfuY.KbMBz4MC9camb74tqrC9wcb5ZM36NPi"/>
+        </insert>
+    </changeSet>
+
+    <changeSet  author="iatlic"  id="insertUser2">
+        <insert tableName="booking_user">
+            <column  name="first_name"  value="Jovan"/>
+            <column  name="last_name"  value="Jovanovic"/>
+            <column  name="email"  value="jovan@gmail.com"/>
+            <column  name="phone_number"  value="+381 63 222 2222"/>
+            <column  name="username" value="jjovanovic"/>
+            <column  name="password" value="$2a$04$AqKphx4LE94zSxijnNfuY.KbMBz4MC9camb74tqrC9wcb5ZM36NPi"/>
+        </insert>
+    </changeSet>
+
+</databaseChangeLog>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <amenities name="Kupatilo" />
+    <amenities  name="Kuhinja" />
+    <amenities  name="Sampon"  parent="1"/>
+    <amenities  name="Terasa" />
+
+</dataset>

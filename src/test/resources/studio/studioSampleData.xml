@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <booking_provider id="1" first_name="Petar" last_name="Petrovic" jmbg="1234567890123" email="ivan@gmail.com"
+                      phone_number="+381 64 999 9999" username="nikola"
+                      password="$2a$04$AqKphx4LE94zSxijnNfuY.KbMBz4MC9camb74tqrC9wcb5ZM36NPi"/>
+
+    <country iso3="SRB" name="Serbia" />
+
+    <city id="1" name="Belgrade" province="Belgrade" country_iso3="SRB"/>
+
+    <service_facility id="1" address="address" postal_code="11000" number_of_floors="5" name="Hotel1"
+                      contact_phone="+381 64 999 9999" description="description" checkin_time="12:00:00"
+                      checkout_time="10:00:00" city_id="1" country_iso3="SRB" booking_provider_id="1"/>
+
+    <amenities id="1" name="Bathroom" />
+    <amenities id="2" name="Dinner" />
+    <amenities id="3" name="Breakfast"/>
+    <amenities id="4" name="Lunch"/>
+
+    <studio_amenities/>
+
+    <studio id="1" name="Studio1" number_of_rooms="4"
+            number_of_people="8"
+            service_facility_id="1"
+    />
+    <studio id="2" name="Studio2" number_of_rooms="2"
+            number_of_people="4"
+            service_facility_id="1"
+    />
+    <studio id="3" name="Studio3" number_of_rooms="3"
+            number_of_people="6"
+            service_facility_id="1"
+    />
+
+    <season id="1" name="Name1" from_date="2023-01-01" to_date="2023-03-31" price_per_night="10" creator_id="1"/>
+    <season id="2" name="Name2" from_date="2023-05-01" to_date="2023-09-31" price_per_night="15" creator_id="1"/>
+
+    <season_studio season_id="1" studio_id="1"/>
+    <season_studio season_id="2" studio_id="1"/>
+
+</dataset>
